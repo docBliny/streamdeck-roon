@@ -1,0 +1,274 @@
+{
+  "Actions": [
+    {
+      "UUID": "net.bliny.roon.play-pause",
+      "Name": "Play/Pause",
+      "Tooltip": "Toggle between Play and Pause",
+      "Icon": "plug-in/images/play-pause-action",
+      "States": [
+        {
+          "Name": "Play",
+          "Image": "plug-in/images/play-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "Pause",
+          "Image": "plug-in/images/pause-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.play",
+      "Name": "Play",
+      "Tooltip": "Play",
+      "Icon": "plug-in/images/play-action",
+      "States": [
+        {
+          "Name": "Play",
+          "Image": "plug-in/images/play-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.pause",
+      "Name": "Pause",
+      "Tooltip": "Pause",
+      "Icon": "plug-in/images/pause-action",
+      "States": [
+        {
+          "Name": "Pause",
+          "Image": "plug-in/images/pause-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.play-item",
+      "Name": "Play selected item",
+      "Tooltip": "Play selected item, such as playlist, artist, tags, or Internet radio station",
+      "Icon": "plug-in/images/play-item-action",
+      "States": [
+        {
+          "Name": "Play item",
+          "Image": "plug-in/images/play-item-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.play-this",
+      "Name": "Play related item",
+      "Tooltip": "Play current artist or album",
+      "Icon": "plug-in/images/play-this-action",
+      "States": [
+        {
+          "Name": "Play related item",
+          "Image": "plug-in/images/play-this-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.stop",
+      "Name": "Stop",
+      "Tooltip": "Stops playback (may pause instead)",
+      "Icon": "plug-in/images/stop-action",
+      "States": [
+        {
+          "Name": "Stop",
+          "Image": "plug-in/images/stop-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.previous",
+      "Name": "Previous",
+      "Tooltip": "Previous track. Hold to seek",
+      "Icon": "plug-in/images/previous-action",
+      "States": [
+        {
+          "Image": "plug-in/images/previous-key"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.next",
+      "Name": "Next",
+      "Tooltip": "Next track. Hold to seek",
+      "Icon": "plug-in/images/next-action",
+      "States": [
+        {
+          "Image": "plug-in/images/next-key"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.volume-up",
+      "Name": "Volume up",
+      "Tooltip": "Nudge volume up. Hold to increase",
+      "Icon": "plug-in/images/volume-up-action",
+      "States": [
+        {
+          "Image": "plug-in/images/volume-up-key"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.volume-down",
+      "Name": "Volume down",
+      "Tooltip": "Nudge volume down. Hold to decrease",
+      "Icon": "plug-in/images/volume-down-action",
+      "States": [
+        {
+          "Image": "plug-in/images/volume-down-key"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.volume-set",
+      "Name": "Volume set",
+      "Tooltip": "Set specific volume level",
+      "Icon": "plug-in/images/volume-set-action",
+      "States": [
+        {
+          "Image": "plug-in/images/volume-set-key"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.mute-unmute",
+      "Name": "Mute/Unmute",
+      "Tooltip": "Toggle between Mute/Unmute",
+      "Icon": "plug-in/images/mute-action",
+      "States": [
+        {
+          "Name": "Mute",
+          "Image": "plug-in/images/mute-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "Unmute",
+          "Image": "plug-in/images/mute-on-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.shuffle",
+      "Name": "Shuffle",
+      "Tooltip": "Toggle Shuffle on/off",
+      "Icon": "plug-in/images/shuffle-action",
+      "States": [
+        {
+          "Name": "Shuffle",
+          "Image": "plug-in/images/shuffle-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "Shuffle off",
+          "Image": "plug-in/images/shuffle-on-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.loop-one",
+      "Name": "Loop one",
+      "Tooltip": "Toggle between loop current track and no loop",
+      "Icon": "plug-in/images/loop-one-action",
+      "States": [
+        {
+          "Name": "Loop one",
+          "Image": "plug-in/images/loop-one-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "No loop",
+          "Image": "plug-in/images/loop-one-on-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.loop-all",
+      "Name": "Loop all",
+      "Tooltip": "Toggle between loop all and no loop",
+      "Icon": "plug-in/images/loop-all-action",
+      "States": [
+        {
+          "Name": "Loop all",
+          "Image": "plug-in/images/loop-all-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "No loop",
+          "Image": "plug-in/images/loop-all-on-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    },
+    {
+      "UUID": "net.bliny.roon.roon-radio",
+      "Name": "Roon radio on/off",
+      "Tooltip": "Roon radio on/off",
+      "Icon": "plug-in/images/roon-radio-action",
+      "States": [
+        {
+          "Name": "Radio on",
+          "Image": "plug-in/images/roon-radio-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        },
+        {
+          "Name": "Radio off",
+          "Image": "plug-in/images/roon-radio-on-key",
+          "TitleAlignment": "bottom",
+          "FontSize": "14"
+        }
+      ]
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "Tomi Blinnikka",
+  "CodePath": "plug-in/index.html",
+  "Description": "Control Roon playback.",
+  "Name": "Roon",
+  "Icon": "plug-in/images/plug-in",
+  "Category": "Roon",
+  "CategoryIcon": "plug-in/images/roon-category",
+  "PropertyInspectorPath": "property-inspector/index.html",
+  "URL": "https://github.com/docBliny/streamdeck-roon",
+  "Version": "1.0.1",
+  "OS": [
+    {
+        "Platform": "mac",
+        "MinimumVersion" : "10.11"
+    },
+    {
+        "Platform": "windows",
+        "MinimumVersion" : "10"
+    }
+  ],
+  "Software":
+    {
+        "MinimumVersion" : "4.2"
+    }
+}

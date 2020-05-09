@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>net.bliny.roon.pi</title>
+    <link rel="stylesheet" href="css/sdpi.css">
+    <style type="text/css">
+      .multirow-info {
+        background-position: 72px 4px;
+      }
+
+      #roon-core-connect {
+        margin-left: auto;
+        margin-right: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sdpi-wrapper">
+
+      <div class="sdpi-item hidden" id="roon-core-not-connected">
+        <details class="message caution">
+          <summary>Roon core not connected</summary>
+        </details>
+      </div>
+
+      <details id="roon-core">
+        <summary>Roon core</summary>
+        <p>The following Roon Core settings apply to all actions.</p>
+
+        <div class="roon-core-fields">
+          <div class="sdpi-item">
+            <div class="sdpi-item-label">Hostname</div>
+            <input class="sdpi-item-value full" type="text" id="roon-hostname" value="" required>
+          </div>
+
+          <div class="sdpi-item">
+            <div class="sdpi-item-label">Port</div>
+            <input class="sdpi-item-value full" id="roon-port" inputmode="numeric" placeholder="9100" min="1" max="64435" type="number" name="roon-port" required>
+          </div>
+
+          <div class="sdpi-item">
+            <div class="sdpi-item-label empty"></div>
+            <button class="sdpi-item-value max40" id="roon-core-connect">Connect</button>
+          </div>
+
+          <div class="sdpi-item">
+            <details class="message info">
+              <summary>Don't forget to enable the extension in Roon.</summary>
+            </details>
+          </div>
+
+        </div>
+      </details>
+
+      <!-- net.bliny.roon.play-pause -->
+      <div class="sdpi-item hidden" id="roon-play-options-item">
+        <div class="sdpi-item-label">Dynamic cover</div>
+          <div class="sdpi-item-value min100">
+            <div class="sdpi-item-child">
+              <input type="checkbox" value="true" id="show-cover-art">
+              <label for="show-cover-art" class="sdpi-item-label"><span></span>Show cover art</label>
+            </div>
+            <div class="sdpi-item-child">
+              <input type="checkbox" value="true" id="show-seek-position">
+              <label for="show-seek-position" class="sdpi-item-label"><span></span>Show elapsed time</label>
+            </div>
+          </div>
+      </div>
+
+      <!-- net.bliny.roon.play-item / net.bliny.roon.play-this -->
+      <div class="hidden" id="roon-play-item-item">
+        <div class="sdpi-item">
+          <div class="sdpi-item-label">Item type</div>
+          <select class="sdpi-item-value select" id="play-item-type">
+              <option class="hidden" id="play-item-type-album" value="albums">Album</option>
+              <option class="hidden" id="play-item-type-artist" value="artists">Artist</option>
+              <option class="hidden" id="play-item-type-composer" value="composers">Composer</option>
+              <option class="hidden" id="play-item-type-radio" value="internet_radio">Radio station</option>
+              <option class="hidden" id="play-item-type-genre" value="genres">Genre</option>
+              <option class="hidden" id="play-item-type-playlist" value="playlists">Playlist</option>
+              <option class="hidden" id="play-item-type-tag" value="tags">Tag</option>
+          </select>
+        </div>
+
+        <div class="sdpi-item" id="play-item-action-item">
+          <div class="sdpi-item-label">Item action</div>
+          <select class="sdpi-item-value select" id="play-item-action">
+              <option id="play-item-action-play-now" value="Play Now">Play Now</option>
+              <option id="play-item-action-shuffle" value="Shuffle">Shuffle</option>
+              <option id="play-item-action-add-next" value="Add Next">Add Next</option>
+              <option id="play-item-action-queue" value="Queue">Queue</option>
+              <option id="play-item-action-radio" value="Start Radio">Start Radio</option>
+          </select>
+        </div>
+
+        <div class="sdpi-item hidden" id="play-item-title-item">
+          <div class="sdpi-item-label">Item title</div>
+          <input class="sdpi-item-value full" type="text" id="play-item-title" value="" required>
+        </div>
+      </div>
+
+      <!-- net.bliny.roon.volume-set -->
+      <div class="sdpi-item hidden" id="roon-volume-set-item">
+        <div class="sdpi-item-label">Volume</div>
+        <input class="sdpi-item-value" id="roon-volume-set" inputmode="numeric" tooltip="A volume value that matches your player's valid values" placeholder="Volume level" type="number" name="roonVolume">
+      </div>
+
+      <div class="sdpi-heading">Player</div>
+
+      <div class="sdpi-item hidden" id="zone-caution">
+        <details class="message caution multirow-info">
+          <summary id="zone-caution-content"></summary>
+        </details>
+      </div>
+
+      <div class="sdpi-item">
+        <div class="sdpi-item-label">Output</div>
+        <input class="sdpi-item-value" type="text" id="roon-output-name" value="" required>
+      </div>
+
+      <div class="sdpi-item">
+        <div class="sdpi-item-label">Available outputs</div>
+        <select class="sdpi-item-value select" id="available-roon-outputs">
+        </select>
+      </div>
+      <div class="sdpi-item">
+        <details class="message info multirow-info">
+          <summary>The output name must match exactly what's entered into Roon. You can select an active output to fill in the name to use.</summary>
+        </details>
+      </div>
+
+      <div class="sdpi-heading">Button</div>
+
+      <div type="checkbox" class="sdpi-item" id="single-check">
+        <div class="sdpi-item-label">Behavior</div>
+        <div class="sdpi-item-value">
+          <div class="sdpi-item-child">
+            <input type="checkbox" value="true" id="disable-when-unavailable">
+            <label for="disable-when-unavailable" class="sdpi-item-label"><span></span>Dim when action not available</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "name": "streamdeck-roon",
+  "version": "1.0.0",
+  "description": "Allows controlling Roon from an Elgato Stream Deck",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:clean && npm run build:webpack && npm run build:package",
+    "build:clean": "rm -rf net.bliny.roon.sdPlugin && mkdir net.bliny.roon.sdPlugin && rm -f ../Release/net.bliny.roon.streamDeckPlugin",
+    "build:webpack": "webpack",
+    "build:package": "DistributionTool -b -i net.bliny.roon.sdPlugin -o ../Release/",
+    "plug-in:build:watch": "DEBUG=plug-in,roon,roon:subscribe,roon:update,action:* parcel watch --no-cache --no-autoinstall --dist-dir net.bliny.roon.sdPlugin/plug-in/ --public-url './' plug-in/index.html",
+    "property-inspector:build:watch": "DEBUG=property-inspector* parcel watch --no-cache --dist-dir net.bliny.roon.sdPlugin/property-inspector/ --public-url './' property-inspector/index.html",
+    "test": "eslint --color plug-in/** property-inspector/**",
+    "test:watch": "esw --color --watch plug-in/**/*.js property-inspector/**/*.js"
+  },
+  "keywords": [],
+  "author": "Tomi Blinnikka",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docBliny/streamdeck-roon.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "buffer": "^5.6.0",
+    "debug": "^4.1.1",
+    "node-roon-api": "github:roonlabs/node-roon-api",
+    "node-roon-api-browse": "github:roonlabs/node-roon-api-browse",
+    "node-roon-api-image": "github:roonlabs/node-roon-api-image",
+    "node-roon-api-transport": "github:roonlabs/node-roon-api-transport"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "babel-eslint": "^10.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^6.8.0",
+    "eslint-watch": "^6.0.1",
+    "html-webpack-plugin": "^4.3.0",
+    "parcel": "2.0.0-nightly.255",
+    "terser-webpack-plugin": "^3.0.1",
+    "webpack": "^5.0.0-beta.16",
+    "webpack-cli": "^4.0.0-beta.8",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "esmodules": true
+          }
+        }
+      ]
+    ]
+  }
+}
