@@ -183,6 +183,15 @@ export default class PlayActionBase extends ActionBase {
     this.renderImage();
   }
 
+  onDispose() {
+    if(!this.pauseTimerInterval) {
+      clearInterval(this.pauseTimerInterval);
+      this.pauseTimerInterval = undefined;
+    }
+
+    super.onDispose();
+  }
+
   onImageKeyChanged(imageKey) {
     const width = 144;
     const height = 144;

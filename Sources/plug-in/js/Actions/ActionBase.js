@@ -104,6 +104,13 @@ export default class ActionBase {
   }
 
   // ********************************************
+  // * Public methods
+  // ********************************************
+  dispose() {
+    this.onDispose();
+  }
+
+  // ********************************************
   // * Private methods, event handlers
   // ********************************************
   onStreamDeckMessage(message) {
@@ -144,6 +151,14 @@ export default class ActionBase {
 
   onRoonActiveOutputChanged(activeOutput) {
     // log(`"${this.actionUuid}" activeRoonOutput changed`);
+  }
+
+  onDispose() {
+    log(`${this.actionUuid} onDispose`);
+    this.activeRoonOutput = null;
+    this.roonOutputs = null;
+    this.roonCore = null;
+    this.streamDeck = null;
   }
 
   // ********************************************

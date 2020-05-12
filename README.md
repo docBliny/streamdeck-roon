@@ -71,3 +71,6 @@ Remember to stop both debug watches first!
 
 # Misc
 Roon is (probably) a trademark or registered trademark of Roon Labs LLC.
+
+Elgato, Corsair, and Stream Deck are (probably) trademarks or registered trademarks of Corsair GmbH
+

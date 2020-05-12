@@ -13,7 +13,7 @@ const roonUpdateLog = debug("roon:update");
 // TODO: Adjust log level from config
 // debug.enable("plug-in,roon,roon:subscribe,roon:update,action:*");
 
-global.Buffer = require('buffer/').Buffer;
+global.Buffer = require("buffer/").Buffer;
 window.connectElgatoStreamDeckSocket = function(port, uuid, registerEvent, info) {
   log("connectElgatoStreamDeckSocket", port, uuid, registerEvent, info);
 
@@ -205,7 +205,11 @@ export default class App {
       }
       break;
     case "willDisappear":
+      const actionObject = this.actions[context];
       delete this.actions[context];
+      if(actionObject) {
+        actionObject.dispose();
+      }
       break;
     case "didReceiveGlobalSettings":
       if(payload && payload.settings) {
@@ -475,7 +479,6 @@ export default class App {
     Object.keys(this.actions).forEach((context) => {
       const action = this.actions[context];
       if(action.actionUuid == "net.bliny.roon.play-pause") {
-
         this.actions[context].roonOutputs = roonOutputs;
       }
     });

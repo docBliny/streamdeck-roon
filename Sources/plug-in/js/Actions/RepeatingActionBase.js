@@ -57,6 +57,15 @@ export default class RepeatingActionBase extends ActionBase {
     this.triggerCount = 0;
   }
 
+  onDispose() {
+    if(!this.interval) {
+      clearInterval(this.interval);
+      this.interval = undefined;
+    }
+
+    super.onDispose();
+  }
+
   onTriggerAction(data, count) {
     log("onTriggerAction");
   }
