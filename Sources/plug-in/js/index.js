@@ -186,6 +186,7 @@ export default class App {
     const { action, context, event, payload } = JSON.parse(data);
     const settings = payload ? payload.settings || {} : {};
     log(`Stream Deck message received: ${data}`);
+    let actionObject;
 
     switch(event) {
     case "willAppear":
@@ -205,7 +206,7 @@ export default class App {
       }
       break;
     case "willDisappear":
-      const actionObject = this.actions[context];
+      actionObject = this.actions[context];
       delete this.actions[context];
       if(actionObject) {
         actionObject.dispose();
