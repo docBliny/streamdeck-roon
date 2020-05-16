@@ -195,7 +195,7 @@ export default class ActionBase {
 
     if(this.roonOutputs !== null) {
       for(const output of this.roonOutputs) {
-        if(output.displayName === outputName) {
+        if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
           result = output;
           break;
         }

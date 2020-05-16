@@ -456,7 +456,7 @@ export default class ConfigApp {
     let result = null;
 
     for(const output of this.roonOutputs) {
-      if(output.displayName === outputName) {
+      if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
         result = output;
         break;
       }
