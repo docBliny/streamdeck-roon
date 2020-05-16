@@ -186,6 +186,7 @@ export default class PlayActionBase extends ActionBase {
   }
 
   onDispose() {
+    log("onDispose");
     if(!this.pauseTimerInterval) {
       clearInterval(this.pauseTimerInterval);
       this.pauseTimerInterval = undefined;

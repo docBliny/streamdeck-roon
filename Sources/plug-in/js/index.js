@@ -63,7 +63,7 @@ export default class App {
       display_version:     VERSION_NUMBER,
       publisher:           "Tomi Blinnikka",
       email:               "tomi.blinnikka@censored",
-      website:             "https://github.com/docBliny/streamdeck-roon",
+      website:             "https://bliny.net/streamdeck-roon/",
       log_level:           "none",
 
       get_persisted_state: this.getRoonPersistedState,
@@ -264,7 +264,7 @@ export default class App {
         }
         if(data.zones_seek_changed) {
           // roonUpdateLog("zones_seek_changed", response, JSON.stringify(data));
-          this.setRoonOutputsFromSeekData(data.zones_removed);
+          this.setRoonOutputsFromSeekData(data.zones_seek_changed);
         }
         break;
       default:

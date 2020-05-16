@@ -255,7 +255,7 @@
   "Category": "Roon",
   "CategoryIcon": "plug-in/images/roon-category",
   "PropertyInspectorPath": "property-inspector/index.html",
-  "URL": "https://github.com/docBliny/streamdeck-roon",
+  "URL": "https://bliny.net/streamdeck-roon/",
   "Version": "1.0.3",
   "OS": [
     {
