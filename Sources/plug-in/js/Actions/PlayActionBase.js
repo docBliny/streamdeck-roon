@@ -136,6 +136,8 @@ export default class PlayActionBase extends ActionBase {
     if(value !== this._state) {
       this._state = value;
 
+      this.setState((value === "playing" || value == "loading") ? 1 : 0);
+
       if(value === "paused" && !this.pauseTimerInterval) {
         this.pauseTimerCount = 0;
         this.pauseTimerInterval = setInterval(() => {
