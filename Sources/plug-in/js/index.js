@@ -10,6 +10,8 @@ const roonLog = debug("roon");
 const roonSubscribeLog = debug("roon:subscribe");
 const roonUpdateLog = debug("roon:update");
 
+const VERSION_NUMBER = "1.0.3";
+
 // TODO: Adjust log level from config
 // debug.enable("plug-in,roon,roon:subscribe,roon:update,action:*");
 
@@ -58,7 +60,7 @@ export default class App {
     this._roon = new RoonApi({
       extension_id:        "net.bliny.streamdeck-roon",
       display_name:        "Elgato Stream Deck controller",
-      display_version:     "1.0.0",
+      display_version:     VERSION_NUMBER,
       publisher:           "Tomi Blinnikka",
       email:               "tomi.blinnikka@censored",
       website:             "https://github.com/docBliny/streamdeck-roon",
@@ -256,9 +258,13 @@ export default class App {
           roonUpdateLog("zones_changed", response, JSON.stringify(data));
           this.setRoonOutputsFromZoneData(data.zones_changed);
         }
+        if(data.zones_removed) {
+          roonUpdateLog("zones_removed", response, JSON.stringify(data));
+          this.removeRoonOutputsFromZoneData(data.zones_removed);
+        }
         if(data.zones_seek_changed) {
           // roonUpdateLog("zones_seek_changed", response, JSON.stringify(data));
-          this.setRoonOutputsFromSeekData(data.zones_seek_changed);
+          this.setRoonOutputsFromSeekData(data.zones_removed);
         }
         break;
       default:
@@ -330,6 +336,21 @@ export default class App {
   setRoonPersistedState(value) {
     this.globalSettings.roonState = value;
     this.saveGlobalSettings();
+  }
+
+  removeRoonOutputsFromZoneData(zoneData) {
+    if(Array.isArray(zoneData)) {
+      // Loop all existing outputs and remove any that were in removed zones
+      Object.keys(this._roonOutputs).map((key) => {
+        if(zoneData.includes(this._roonOutputs[key].zoneId)) {
+          delete this._roonOutputs[key];
+        }
+      });
+
+      roonLog("Current outputs", JSON.stringify(this.roonOutputs));
+      this.updatePropertyInspectorRoonOutputs();
+      this.updateActionRoonOutputs();
+    }
   }
 
   /**

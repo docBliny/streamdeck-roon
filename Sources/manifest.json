@@ -256,7 +256,7 @@
   "CategoryIcon": "plug-in/images/roon-category",
   "PropertyInspectorPath": "property-inspector/index.html",
   "URL": "https://github.com/docBliny/streamdeck-roon",
-  "Version": "1.0.2",
+  "Version": "1.0.3",
   "OS": [
     {
         "Platform": "mac",
