@@ -51,12 +51,12 @@
     },
     {
       "UUID": "net.bliny.roon.play-item",
-      "Name": "Play selected item",
+      "Name": "Play Selected Item",
       "Tooltip": "Play selected item, such as playlist, artist, tags, or Internet radio station",
       "Icon": "plug-in/images/play-item-action",
       "States": [
         {
-          "Name": "Play item",
+          "Name": "Play Item",
           "Image": "plug-in/images/play-item-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -65,12 +65,12 @@
     },
     {
       "UUID": "net.bliny.roon.play-this",
-      "Name": "Play related item",
+      "Name": "Play Related Item",
       "Tooltip": "Play current artist or album",
       "Icon": "plug-in/images/play-this-action",
       "States": [
         {
-          "Name": "Play related item",
+          "Name": "Play Related Item",
           "Image": "plug-in/images/play-this-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -115,7 +115,7 @@
     },
     {
       "UUID": "net.bliny.roon.volume-up",
-      "Name": "Volume up",
+      "Name": "Volume Up",
       "Tooltip": "Nudge volume up. Hold to increase",
       "Icon": "plug-in/images/volume-up-action",
       "States": [
@@ -126,7 +126,7 @@
     },
     {
       "UUID": "net.bliny.roon.volume-down",
-      "Name": "Volume down",
+      "Name": "Volume Down",
       "Tooltip": "Nudge volume down. Hold to decrease",
       "Icon": "plug-in/images/volume-down-action",
       "States": [
@@ -137,7 +137,7 @@
     },
     {
       "UUID": "net.bliny.roon.volume-set",
-      "Name": "Volume set",
+      "Name": "Set Volume",
       "Tooltip": "Set specific volume level",
       "Icon": "plug-in/images/volume-set-action",
       "States": [
@@ -153,13 +153,13 @@
       "Icon": "plug-in/images/mute-action",
       "States": [
         {
-          "Name": "Mute on",
+          "Name": "Mute On",
           "Image": "plug-in/images/mute-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "Mute off",
+          "Name": "Mute Off",
           "Image": "plug-in/images/mute-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -173,13 +173,13 @@
       "Icon": "plug-in/images/shuffle-action",
       "States": [
         {
-          "Name": "Shuffle on",
+          "Name": "Shuffle On",
           "Image": "plug-in/images/shuffle-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "Shuffle off",
+          "Name": "Shuffle Off",
           "Image": "plug-in/images/shuffle-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -188,18 +188,18 @@
     },
     {
       "UUID": "net.bliny.roon.loop-one",
-      "Name": "Loop one",
+      "Name": "Loop One",
       "Tooltip": "Toggle between loop current track and no loop",
       "Icon": "plug-in/images/loop-one-action",
       "States": [
         {
-          "Name": "Loop one",
+          "Name": "Loop One",
           "Image": "plug-in/images/loop-one-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "No loop",
+          "Name": "No Loop",
           "Image": "plug-in/images/loop-one-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -208,18 +208,18 @@
     },
     {
       "UUID": "net.bliny.roon.loop-all",
-      "Name": "Loop all",
+      "Name": "Loop All",
       "Tooltip": "Toggle between loop all and no loop",
       "Icon": "plug-in/images/loop-all-action",
       "States": [
         {
-          "Name": "Loop all",
+          "Name": "Loop All",
           "Image": "plug-in/images/loop-all-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "No loop",
+          "Name": "No Loop",
           "Image": "plug-in/images/loop-all-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -229,17 +229,17 @@
     {
       "UUID": "net.bliny.roon.roon-radio",
       "Name": "Roon radio on/off",
-      "Tooltip": "Roon radio on/off",
+      "Tooltip": "Roon Radio On/Off",
       "Icon": "plug-in/images/roon-radio-action",
       "States": [
         {
-          "Name": "Radio on",
+          "Name": "Radio On",
           "Image": "plug-in/images/roon-radio-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "Radio off",
+          "Name": "Radio Off",
           "Image": "plug-in/images/roon-radio-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
@@ -257,7 +257,7 @@
   "CategoryIcon": "plug-in/images/roon-category",
   "PropertyInspectorPath": "property-inspector/index.html",
   "URL": "https://bliny.net/streamdeck-roon/",
-  "Version": "1.0.3",
+  "Version": "1.0.4",
   "OS": [
     {
         "Platform": "mac",
