@@ -5,6 +5,7 @@
       "Name": "Play/Pause",
       "Tooltip": "Toggle between Play and Pause",
       "Icon": "plug-in/images/play-pause-action",
+      "SupportedInMultiActions": false,
       "States": [
         {
           "Name": "Play",
@@ -152,14 +153,14 @@
       "Icon": "plug-in/images/mute-action",
       "States": [
         {
-          "Name": "Mute",
-          "Image": "plug-in/images/mute-key",
+          "Name": "Mute on",
+          "Image": "plug-in/images/mute-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
-          "Name": "Unmute",
-          "Image": "plug-in/images/mute-on-key",
+          "Name": "Mute off",
+          "Image": "plug-in/images/mute-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         }
@@ -172,14 +173,14 @@
       "Icon": "plug-in/images/shuffle-action",
       "States": [
         {
-          "Name": "Shuffle",
-          "Image": "plug-in/images/shuffle-key",
+          "Name": "Shuffle on",
+          "Image": "plug-in/images/shuffle-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
           "Name": "Shuffle off",
-          "Image": "plug-in/images/shuffle-on-key",
+          "Image": "plug-in/images/shuffle-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         }
@@ -193,13 +194,13 @@
       "States": [
         {
           "Name": "Loop one",
-          "Image": "plug-in/images/loop-one-key",
+          "Image": "plug-in/images/loop-one-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
           "Name": "No loop",
-          "Image": "plug-in/images/loop-one-on-key",
+          "Image": "plug-in/images/loop-one-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         }
@@ -213,13 +214,13 @@
       "States": [
         {
           "Name": "Loop all",
-          "Image": "plug-in/images/loop-all-key",
+          "Image": "plug-in/images/loop-all-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
           "Name": "No loop",
-          "Image": "plug-in/images/loop-all-on-key",
+          "Image": "plug-in/images/loop-all-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         }
@@ -233,13 +234,13 @@
       "States": [
         {
           "Name": "Radio on",
-          "Image": "plug-in/images/roon-radio-key",
+          "Image": "plug-in/images/roon-radio-on-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         },
         {
           "Name": "Radio off",
-          "Image": "plug-in/images/roon-radio-on-key",
+          "Image": "plug-in/images/roon-radio-key",
           "TitleAlignment": "bottom",
           "FontSize": "14"
         }

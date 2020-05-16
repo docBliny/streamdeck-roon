@@ -34,7 +34,7 @@ export default class RoonRadioAction extends ActionBase {
     if(value !== this._autoRadio) {
       this._autoRadio = (value === true);
 
-      this.setState(value === true ? 1 : 0);
+      this.setState(value === true ? 0 : 1);
     }
   }
 
@@ -44,7 +44,7 @@ export default class RoonRadioAction extends ActionBase {
   onKeyUp(data) {
     super.onKeyUp(data);
 
-    const auto_radio = (data.state === 0);
+    const auto_radio = (this.toggleDesiredState(data) === 0);
     this.transportSetting({ auto_radio });
   }
 

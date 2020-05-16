@@ -34,7 +34,7 @@ export default class MuteUnmuteAction extends ActionBase {
     if(value !== this._isMuted) {
       this._isMuted = (value === true);
 
-      this.setState(value === true ? 1 : 0);
+      this.setState(value === true ? 0 : 1);
     }
   }
 
@@ -53,7 +53,8 @@ export default class MuteUnmuteAction extends ActionBase {
     }
 
     if(outputId !== null) {
-      this.roonTransport.mute(outputId, this.isMuted ? "unmute" : "mute", (err) => {
+      const mute = (this.toggleDesiredState(data) === 0);
+      this.roonTransport.mute(outputId, mute ? "mute" : "unmute", (err) => {
         if(err) {
           log(`"${this.actionUuid}" mute change error: ${err}`);
           this.showAlert();

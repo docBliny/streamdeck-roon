@@ -164,6 +164,17 @@ export default class ActionBase {
   // ********************************************
   // * Private methods
   // ********************************************
+  toggleDesiredState(data) {
+    let result = 0;
+    if(Object.prototype.hasOwnProperty.call(data, "userDesiredState")) {
+      result = data.userDesiredState;
+    } else {
+      result = data.state === 0 ? 1 : 0;
+    }
+
+    return result;
+  }
+
   getDisabledImageWhenRequested() {
     const disableWhenUnavailable = this.settings && (this.settings.disableWhenUnavailable == true);
     let result = undefined;

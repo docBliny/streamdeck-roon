@@ -32,7 +32,7 @@ export default class ShuffleAction extends ActionBase {
     if(value !== this._shuffle) {
       this._shuffle = (value === true);
 
-      this.setState(value === true ? 1 : 0);
+      this.setState(value === true ? 0 : 1);
     }
   }
 
@@ -42,7 +42,7 @@ export default class ShuffleAction extends ActionBase {
   onKeyUp(data) {
     super.onKeyUp(data);
 
-    const shuffle = (data.state === 0);
+    const shuffle = this.toggleDesiredState(data) === 0;
     this.transportSetting({ shuffle });
   }
 

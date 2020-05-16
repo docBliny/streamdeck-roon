@@ -34,7 +34,7 @@ export default class LoopOneAction extends ActionBase {
     if(value !== this._loopOne) {
       this._loopOne = value;
 
-      this.setState(value === true ? 1 : 0);
+      this.setState(value === true ? 0 : 1);
     }
   }
 
@@ -44,7 +44,7 @@ export default class LoopOneAction extends ActionBase {
   onKeyUp(data) {
     super.onKeyUp(data);
 
-    const loop = (data.state === 1 ? "disabled" : "loop_one");
+    const loop = (this.toggleDesiredState(data) === 0) ? "loop_one" : "disabled";
     this.transportSetting({ loop });
   }
 
