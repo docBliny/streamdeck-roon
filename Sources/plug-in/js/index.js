@@ -10,7 +10,7 @@ const roonLog = debug("roon");
 const roonSubscribeLog = debug("roon:subscribe");
 const roonUpdateLog = debug("roon:update");
 
-const VERSION_NUMBER = "1.0.4";
+const VERSION_NUMBER = "1.0.5";
 
 // TODO: Adjust log level from config
 // debug.enable("plug-in,roon,roon:subscribe,roon:update,action:*");
@@ -160,6 +160,14 @@ export default class App {
   }
 
   // ********************************************
+  // * Public methods
+  // ********************************************
+  requestRoonCoreReconnect() {
+    log("requestRoonCoreReconnect");
+    this.roonConnect(this.globalSettings.roonHostname, this.globalSettings.roonPort);
+  }
+
+  // ********************************************
   // * Private methods, event handlers
   // ********************************************
   onStreamDeckOpen() {
@@ -200,6 +208,7 @@ export default class App {
           actionUuid: action,
           context,
           settings,
+          parent: this,
         });
 
         if(actionInstance !== null) {
@@ -404,7 +413,7 @@ export default class App {
           }
           if(zone.now_playing) {
             this.conditionalAdd(zone.now_playing, newOutput, "seek_position", "seekPosition");
-            this.conditionalAdd(zone.now_playing, newOutput, "image_key", "imageKey");
+            newOutput.imageKey = zone.now_playing.image_key;
             if(zone.now_playing.three_line) {
               this.conditionalAdd(zone.now_playing.three_line, newOutput, "line1", "songName");
               this.conditionalAdd(zone.now_playing.three_line, newOutput, "line2", "artistName");
@@ -500,7 +509,7 @@ export default class App {
     const roonOutputs = this.getRoonOutputsAsArray();
     Object.keys(this.actions).forEach((context) => {
       const action = this.actions[context];
-      if(action.actionUuid == "net.bliny.roon.play-pause") {
+      if(action.actionUuid == "net.bliny.roon.play-pause" || action.actionUuid == "net.bliny.roon.play") {
         this.actions[context].roonOutputs = roonOutputs;
       }
     });

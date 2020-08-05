@@ -6,7 +6,7 @@ export default class ActionBase {
   // ********************************************
   // * Constructors
   // ********************************************
-  constructor({ streamDeck, roonCore, roonOutputs, actionUuid, context, settings } = {}) {
+  constructor({ streamDeck, roonCore, roonOutputs, actionUuid, context, settings, parent } = {}) {
     // Bind and save bound event handlers
     this.onStreamDeckMessage = this.onStreamDeckMessage.bind(this);
 
@@ -18,6 +18,7 @@ export default class ActionBase {
     this.roonCore = roonCore;
     this.roonActiveOutput = null;
     this.roonOutputs = roonOutputs;
+    this._parent = parent;
   }
 
   // ********************************************
@@ -29,6 +30,10 @@ export default class ActionBase {
 
   get context() {
     return this._context;
+  }
+
+  get parent() {
+    return this._parent;
   }
 
   get roonCore() {
@@ -139,6 +144,10 @@ export default class ActionBase {
 
   onKeyUp(data) {
     log(`${this.actionUuid} keyUp`);
+
+    if(!this.roonCore) {
+      this.requestRoonConnect();
+    }
   }
 
   onSettingsUpdated(settings) {
@@ -159,6 +168,7 @@ export default class ActionBase {
     this.roonOutputs = null;
     this.roonCore = null;
     this.streamDeck = null;
+    this._parent = null;
   }
 
   // ********************************************
@@ -193,7 +203,7 @@ export default class ActionBase {
   getRoonOutputByOutputName(outputName) {
     let result = null;
 
-    if(this.roonOutputs !== null) {
+    if(this.roonOutputs !== null && outputName !== undefined) {
       for(const output of this.roonOutputs) {
         if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
           result = output;
@@ -203,6 +213,12 @@ export default class ActionBase {
     }
 
     return result;
+  }
+
+  requestRoonConnect() {
+    if(this.parent) {
+      this.parent.requestRoonCoreReconnect();
+    }
   }
 
   saveSettings() {

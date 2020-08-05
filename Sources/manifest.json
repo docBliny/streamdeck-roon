@@ -257,7 +257,7 @@
   "CategoryIcon": "plug-in/images/roon-category",
   "PropertyInspectorPath": "property-inspector/index.html",
   "URL": "https://bliny.net/streamdeck-roon/",
-  "Version": "1.0.4",
+  "Version": "1.0.5",
   "OS": [
     {
         "Platform": "mac",

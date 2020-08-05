@@ -207,6 +207,7 @@ export default class PlayActionBase extends ActionBase {
           if(err) {
             log(`Error retrieving image from Roon: ${err}`);
             this.imageData = null;
+            this.renderImage();
           } else {
             const blob = new Blob([ body ], { type: contentType });
             const imagePromise = createImageBitmap(blob);
@@ -217,10 +218,10 @@ export default class PlayActionBase extends ActionBase {
                 width,
                 height,
               };
+
+              this.renderImage();
             });
           }
-
-          this.renderImage();
         }
       );
     } else {

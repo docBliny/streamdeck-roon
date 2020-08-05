@@ -62,6 +62,9 @@ npm run property-inspector:build:watch
 
 
 # Build release package
+* Update the `VERSION_NUMBER` constant in `index.js`
+* Update the version number in `manifest.json`
+
 Release packages are bundled using beta version of Webpack 5 (https://webpack.js.org/).
 ```
 npm run build

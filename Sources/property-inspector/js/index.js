@@ -455,10 +455,12 @@ export default class ConfigApp {
   getRoonOutputByOutputName(outputName) {
     let result = null;
 
-    for(const output of this.roonOutputs) {
-      if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
-        result = output;
-        break;
+    if(outputName !== undefined) {
+      for(const output of this.roonOutputs) {
+        if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
+          result = output;
+          break;
+        }
       }
     }
 
