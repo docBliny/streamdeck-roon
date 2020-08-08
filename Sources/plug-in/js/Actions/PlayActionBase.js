@@ -26,12 +26,13 @@ export default class PlayActionBase extends ActionBase {
         width: 144,
         height: 144,
       };
-    };
-    defaultPlayImage.src = PlayImage;
 
-    // Trigger image updates based on this Action's custom settings
-    this.showCoverArt = config && config.settings && config.settings.showCoverArt;
-    this.showSeekPosition = config && config.settings && config.settings.showSeekPosition;
+      // Trigger image updates based on this Action's custom settings once base image is ready
+      this.showCoverArt = config && config.settings && config.settings.showCoverArt;
+      this.showSeekPosition = config && config.settings && config.settings.showSeekPosition;
+    };
+
+    defaultPlayImage.src = PlayImage;
   }
 
   // ********************************************

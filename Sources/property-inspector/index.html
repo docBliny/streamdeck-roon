@@ -60,16 +60,16 @@
       <!-- net.bliny.roon.play-pause -->
       <div class="sdpi-item hidden" id="roon-play-options-item">
         <div class="sdpi-item-label">Dynamic cover</div>
-          <div class="sdpi-item-value min100">
-            <div class="sdpi-item-child">
-              <input type="checkbox" value="true" id="show-cover-art">
-              <label for="show-cover-art" class="sdpi-item-label"><span></span>Show cover art</label>
-            </div>
-            <div class="sdpi-item-child">
-              <input type="checkbox" value="true" id="show-seek-position">
-              <label for="show-seek-position" class="sdpi-item-label"><span></span>Show elapsed time</label>
-            </div>
+        <div class="sdpi-item-value min100">
+          <div class="sdpi-item-child">
+            <input type="checkbox" value="true" id="show-cover-art">
+            <label for="show-cover-art" class="sdpi-item-label"><span></span>Show cover art</label>
           </div>
+          <div class="sdpi-item-child">
+            <input type="checkbox" value="true" id="show-seek-position">
+            <label for="show-seek-position" class="sdpi-item-label"><span></span>Show elapsed time</label>
+          </div>
+        </div>
       </div>
 
       <!-- net.bliny.roon.play-item / net.bliny.roon.play-this -->
@@ -105,9 +105,20 @@
       </div>
 
       <!-- net.bliny.roon.volume-set -->
-      <div class="sdpi-item hidden" id="roon-volume-set-item">
-        <div class="sdpi-item-label">Volume</div>
-        <input class="sdpi-item-value" id="roon-volume-set" inputmode="numeric" tooltip="A volume value that matches your player's valid values" placeholder="Volume level" type="number" name="roonVolume">
+      <div class="hidden" id="roon-volume-set-item">
+        <div class="sdpi-item">
+          <div class="sdpi-item-label">Volume</div>
+          <input class="sdpi-item-value" id="roon-volume-set" inputmode="numeric" tooltip="A volume value that matches your player's valid values" placeholder="Volume level" type="number" name="roonVolume">
+        </div>
+        <div class="sdpi-item">
+          <div class="sdpi-item-label">Options</div>
+          <div class="sdpi-item-value min100">
+            <div class="sdpi-item-child">
+              <input type="checkbox" value="true" id="show-current-volume">
+              <label for="show-current-volume" class="sdpi-item-label"><span></span>Show current volume</label>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="sdpi-heading">Player</div>

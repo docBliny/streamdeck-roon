@@ -273,6 +273,7 @@ export default class ConfigApp {
     document.getElementById("play-item-action").addEventListener("change", (event) => this.onSettingsChanged("itemAction", event.target.value));
 
     document.getElementById("roon-volume-set").addEventListener("change", (event) => this.onSettingsChanged("volume", event.target.value));
+    document.getElementById("show-current-volume").addEventListener("change", (event) => this.onSettingsChanged("showCurrentVolume", (event.target.checked === true)));
 
     document.getElementById("available-roon-outputs").addEventListener("change", (event) => this.onRoonOutputSelected(event.target.value));
     document.getElementById("roon-output-name").addEventListener("change", (event) => this.onRoonOutputChanged(event.target.value));
@@ -345,6 +346,9 @@ export default class ConfigApp {
     if(settings.volume !== undefined) {
       document.getElementById("roon-volume-set").value = settings.volume;
     }
+    if(settings.showCurrentVolume !== undefined) {
+      document.getElementById("show-current-volume").checked = (settings.showCurrentVolume === true);
+    }
 
     // Roon output
     if(settings.roonOutputName !== undefined) {
@@ -380,6 +384,10 @@ export default class ConfigApp {
     if(this.actionUuid == "net.bliny.roon.play-this") {
       defaults.itemType = "artists";
       defaults.itemAction = "Shuffle";
+    }
+
+    if(this.actionUuid == "net.bliny.roon.volume-set") {
+      defaults.showCurrentVolume = false;
     }
 
     this.updateWithSettings(defaults);
@@ -418,6 +426,7 @@ export default class ConfigApp {
 
       if(this.actionUuid == "net.bliny.roon.volume-set") {
         this.settings.volume = document.getElementById("roon-volume-set").value;
+        this.settings.showCurrentVolume = (document.getElementById("show-current-volume").checked === true);
       }
 
       this.saveSettings();

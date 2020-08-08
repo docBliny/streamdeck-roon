@@ -10,7 +10,7 @@ const roonLog = debug("roon");
 const roonSubscribeLog = debug("roon:subscribe");
 const roonUpdateLog = debug("roon:update");
 
-const VERSION_NUMBER = "1.0.5";
+const VERSION_NUMBER = "1.0.7";
 
 // TODO: Adjust log level from config
 // debug.enable("plug-in,roon,roon:subscribe,roon:update,action:*");
