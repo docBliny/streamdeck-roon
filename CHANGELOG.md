@@ -1,12 +1,13 @@
 # Changelog
 
 ## [1.0.7] - 2020-08-07
+### Changed
 - Fix issues when waking up from sleep where dynamically rendered images may cause buttons to fail to work.
 
 ## [1.0.6] - 2020-08-04
-- Add ability to show current volume on volume set button
 
 ### Changed
+- Add ability to show current volume on volume set button
 
 ## [1.0.5] - 2020-06-27
 
