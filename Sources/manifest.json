@@ -245,6 +245,30 @@
           "FontSize": "14"
         }
       ]
+    },
+    {
+      "UUID": "net.bliny.roon.volume-encoder",
+      "Name": "Adjust Volume",
+      "Tooltip": "Adjust volume level",
+      "Icon": "plug-in/images/volume-encoder-action",
+      "Controllers": ["Encoder"],
+      "Encoder": {
+        "Icon": "plug-in/images/encoder.svg",
+        "layout": "$B1",
+        "StackColor": "#0000FF",
+        "TriggerDescription": {
+          "Rotate": "Adjust volume",
+          "Push": "Mute/unmute",
+          "Touch": "Mute/unmute",
+          "LongTouch": "Mute/unmute all zones"
+        }
+      },
+      "States": [
+        {
+          "Image": "plug-in/images/volume-encoder-key"
+        }
+      ],
+      "SupportedInMultiActions": false
     }
   ],
   "SDKVersion": 2,
@@ -257,7 +281,7 @@
   "CategoryIcon": "plug-in/images/roon-category",
   "PropertyInspectorPath": "property-inspector/index.html",
   "URL": "https://bliny.net/streamdeck-roon/",
-  "Version": "1.0.7",
+  "Version": "1.0.9",
   "OS": [
     {
         "Platform": "mac",
@@ -270,6 +294,6 @@
   ],
   "Software":
     {
-        "MinimumVersion" : "4.2"
+        "MinimumVersion" : "6.0"
     }
 }

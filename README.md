@@ -30,6 +30,7 @@ Add one of the Roon actions to the Deck, then enter the hostname (or IP address)
 
 Then open Roon, open the main menu, and select **Settings**. In the *Settings* window, select **Extensions** and find the the **Elgato Stream Deck controller** extension and click **Enable**.
 
+
 # Local development
 ## Source code
 The `Sources` folder contains the source code of the plugin. It will be built into the `Sources/net.bliny.roon.sdPlugin` folder during dev mode and production build.
@@ -54,23 +55,29 @@ ln -s ~/dev/streamdeck-roon/Sources/net.bliny.roon.sdPlugin ~/Library/Applicatio
 Run the plug-in and property inspector in hot reload mode:
 Development mode is run using beta version of Parcel 2 (https://parceljs.org/) to allow for hot reloads without a development web server.
 ```
+cd Sources/
 npm run plug-in:build:watch
 
 # In second terminal
+cd Sources/
 npm run property-inspector:build:watch
 ```
 
 
 # Build release package
+* Update the `version` constant in `package.json`
 * Update the `VERSION_NUMBER` constant in `index.js`
 * Update the version number in `manifest.json`
 
-Release packages are bundled using beta version of Webpack 5 (https://webpack.js.org/).
+Release packages are bundled using Webpack 5 (https://webpack.js.org/).
 ```
 npm run build
 ```
 
 Remember to stop both debug watches first!
+
+Run the Distribution Tool to validate the package. See https://developer.elgato.com/documentation/stream-deck/sdk/packaging/
+
 
 # Misc
 Roon is (probably) a trademark or registered trademark of Roon Labs LLC.

@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.9] - 2023-03-15
+### Changed
+- Add support for StreamDeck+ knobs
+- Update to latest SDK styles
+
+## [1.0.8] - 2022-06-07
+### Changed
+- Update dependencies to latest for performance and security
+- Update internal build configuration to match latest dependencies
+- Remove port number placeholder text since it is now much more dynamic than the previous default
+
 ## [1.0.7] - 2020-08-07
 ### Changed
 - Fix issues when waking up from sleep where dynamically rendered images may cause buttons to fail to work.

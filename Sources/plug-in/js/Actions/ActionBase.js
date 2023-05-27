@@ -6,7 +6,15 @@ export default class ActionBase {
   // ********************************************
   // * Constructors
   // ********************************************
-  constructor({ streamDeck, roonCore, roonOutputs, actionUuid, context, settings, parent } = {}) {
+  constructor({
+    streamDeck,
+    roonCore,
+    roonOutputs,
+    actionUuid,
+    context,
+    settings,
+    parent,
+  } = {}) {
     // Bind and save bound event handlers
     this.onStreamDeckMessage = this.onStreamDeckMessage.bind(this);
 
@@ -43,7 +51,7 @@ export default class ActionBase {
   set roonCore(value) {
     this._roonCore = value;
 
-    if(value !== null) {
+    if (value !== null) {
       this.roonTransport = this.roonCore.services.RoonApiTransport;
     } else {
       this.roonTransport = null;
@@ -72,11 +80,13 @@ export default class ActionBase {
   }
 
   set roonOutputs(value) {
-    if(value !== this._roonOutputs) {
+    if (value !== this._roonOutputs) {
       this._roonOutputs = value;
 
       // Find and set the active output, if available
-      this.roonActiveOutput = this.getRoonOutputByOutputName(this.settings.roonOutputName);
+      this.roonActiveOutput = this.getRoonOutputByOutputName(
+        this.settings.roonOutputName
+      );
     }
   }
 
@@ -93,16 +103,19 @@ export default class ActionBase {
   }
 
   set streamDeck(value) {
-    if(value !== this._streamDeck) {
+    if (value !== this._streamDeck) {
       // Check if we should attempt to remove previous event listener(s)
-      if(this._streamDeck) {
-        this._streamDeck.removeEventListener("message", this.onStreamDeckMessage);
+      if (this._streamDeck) {
+        this._streamDeck.removeEventListener(
+          "message",
+          this.onStreamDeckMessage
+        );
       }
 
       this._streamDeck = value;
 
       // Add event listener(s)
-      if(this._streamDeck) {
+      if (this._streamDeck) {
         this._streamDeck.addEventListener("message", this.onStreamDeckMessage);
       }
     }
@@ -123,19 +136,36 @@ export default class ActionBase {
     const { action, context, event, payload } = JSON.parse(data);
 
     // Check if this message was intended for this action
-    if(action === this.actionUuid && context === this.context) {
-      switch(event) {
-      case "keyDown":
-        this.onKeyDown(payload);
-        break;
-      case "keyUp":
-        this.onKeyUp(payload);
-        break;
-      case "didReceiveSettings":
-        this.onSettingsUpdated(payload.settings);
-        break;
+    if (action === this.actionUuid && context === this.context) {
+      switch (event) {
+        case "dialPress":
+          this.onDialPress(payload);
+          break;
+        case "dialRotate":
+          this.onDialRotate(payload);
+          break;
+        case "didReceiveSettings":
+          this.onSettingsUpdated(payload.settings);
+          break;
+        case "keyDown":
+          this.onKeyDown(payload);
+          break;
+        case "keyUp":
+          this.onKeyUp(payload);
+          break;
+        case "touchTap":
+          this.onTouchTap(payload);
+          break;
       }
     }
+  }
+
+  onDialPress(data) {
+    log(`${this.actionUuid} dialPress`);
+  }
+
+  onDialRotate(data) {
+    log(`${this.actionUuid} dialRotate`);
   }
 
   onKeyDown(data) {
@@ -145,7 +175,7 @@ export default class ActionBase {
   onKeyUp(data) {
     log(`${this.actionUuid} keyUp`);
 
-    if(!this.roonCore) {
+    if (!this.roonCore) {
       this.requestRoonConnect();
     }
   }
@@ -155,7 +185,13 @@ export default class ActionBase {
     this.settings = settings;
 
     // Find and set the active output, if available
-    this.roonActiveOutput = this.getRoonOutputByOutputName(settings.roonOutputName);
+    this.roonActiveOutput = this.getRoonOutputByOutputName(
+      settings.roonOutputName
+    );
+  }
+
+  onTouchTap(data) {
+    log(`${this.actionUuid} touchTap`);
   }
 
   onRoonActiveOutputChanged(activeOutput) {
@@ -176,7 +212,7 @@ export default class ActionBase {
   // ********************************************
   toggleDesiredState(data) {
     let result = 0;
-    if(Object.prototype.hasOwnProperty.call(data, "userDesiredState")) {
+    if (Object.prototype.hasOwnProperty.call(data, "userDesiredState")) {
       result = data.userDesiredState;
     } else {
       result = data.state === 0 ? 1 : 0;
@@ -186,10 +222,11 @@ export default class ActionBase {
   }
 
   getDisabledImageWhenRequested() {
-    const disableWhenUnavailable = this.settings && (this.settings.disableWhenUnavailable == true);
+    const disableWhenUnavailable =
+      this.settings && this.settings.disableWhenUnavailable == true;
     let result = undefined;
 
-    if(disableWhenUnavailable === true) {
+    if (disableWhenUnavailable === true) {
       return this.getDisabledImage();
     }
 
@@ -203,9 +240,9 @@ export default class ActionBase {
   getRoonOutputByOutputName(outputName) {
     let result = null;
 
-    if(this.roonOutputs !== null && outputName !== undefined) {
-      for(const output of this.roonOutputs) {
-        if(output.displayName.toLowerCase() === outputName.toLowerCase()) {
+    if (this.roonOutputs !== null && outputName !== undefined) {
+      for (const output of this.roonOutputs) {
+        if (output.displayName.toLowerCase() === outputName.toLowerCase()) {
           result = output;
           break;
         }
@@ -216,7 +253,7 @@ export default class ActionBase {
   }
 
   requestRoonConnect() {
-    if(this.parent) {
+    if (this.parent) {
       this.parent.requestRoonCoreReconnect();
     }
   }
@@ -276,15 +313,15 @@ export default class ActionBase {
   transportControl(action) {
     const outputId = this.getActiveRoonOutputId();
 
-    if(this.roonTransport === null) {
+    if (this.roonTransport === null) {
       log(`"${this.actionUuid}" transport control not available`);
       this.showAlert();
       return;
     }
 
-    if(outputId !== null) {
+    if (outputId !== null) {
       this.roonTransport.control(outputId, action, (err) => {
-        if(err) {
+        if (err) {
           log(`"${this.actionUuid}" transport control error: ${err}`);
           this.showAlert();
         }
@@ -298,15 +335,15 @@ export default class ActionBase {
   transportSeek(how, seconds) {
     const outputId = this.getActiveRoonOutputId();
 
-    if(this.roonTransport === null) {
+    if (this.roonTransport === null) {
       log(`"${this.actionUuid}" transport seek not available`);
       this.showAlert();
       return;
     }
 
-    if(outputId !== null) {
+    if (outputId !== null) {
       this.roonTransport.seek(outputId, how, seconds, (err) => {
-        if(err) {
+        if (err) {
           log(`"${this.actionUuid}" transport seek error: ${err}`);
           this.showAlert();
         }
@@ -320,15 +357,15 @@ export default class ActionBase {
   transportSetting(settings) {
     const outputId = this.getActiveRoonOutputId();
 
-    if(this.roonTransport === null) {
+    if (this.roonTransport === null) {
       log(`"${this.actionUuid}" transport control not available`);
       this.showAlert();
       return;
     }
 
-    if(outputId !== null) {
+    if (outputId !== null) {
       this.roonTransport.change_settings(outputId, settings, (err) => {
-        if(err) {
+        if (err) {
           log(`"${this.actionUuid}" transport change error: ${err}`);
           this.showAlert();
         }
@@ -346,40 +383,47 @@ export default class ActionBase {
     let itemKey;
     let result = null;
 
-    switch(itemType) {
-    case "artists":
-      path = [ itemTitle, "Play Artist", itemAction, itemAction ];
-      break;
-    case "albums":
-      path = [ itemTitle, "Play Album", itemAction, itemAction ];
-      break;
-    case "composers":
-      path = [ itemTitle, "Play Composer", itemAction, itemAction ];
-      break;
-    case "internet_radio":
-      path = [ itemTitle, itemTitle ];
-      break;
-    case "genres":
-      path = [ itemTitle, "Play Genre", itemAction, itemAction ];
-      break;
-    case "playlists":
-      path = [ itemTitle, "Play Playlist", itemAction, itemAction ];
-      break;
-    case "tags":
-      hierarchy = "browse";
-      path = [ "Library", "Tags", itemTitle, "Play Tag", itemAction, itemAction ];
-      break;
+    switch (itemType) {
+      case "artists":
+        path = [itemTitle, "Play Artist", itemAction, itemAction];
+        break;
+      case "albums":
+        path = [itemTitle, "Play Album", itemAction, itemAction];
+        break;
+      case "composers":
+        path = [itemTitle, "Play Composer", itemAction, itemAction];
+        break;
+      case "internet_radio":
+        path = [itemTitle, itemTitle];
+        break;
+      case "genres":
+        path = [itemTitle, "Play Genre", itemAction, itemAction];
+        break;
+      case "playlists":
+        path = [itemTitle, "Play Playlist", itemAction, itemAction];
+        break;
+      case "tags":
+        hierarchy = "browse";
+        path = [
+          "Library",
+          "Tags",
+          itemTitle,
+          "Play Tag",
+          itemAction,
+          itemAction,
+        ];
+        break;
     }
 
     let index = 0;
-    for(const pathItem of path) {
+    for (const pathItem of path) {
       index += 1;
       const options = {
         hierarchy,
         zone_or_output_id: outputId,
       };
 
-      if(!itemKey) {
+      if (!itemKey) {
         options.pop_all = true;
       } else {
         options.item_key = itemKey;
@@ -387,7 +431,7 @@ export default class ActionBase {
 
       result = await this.browseAndFind(options, pathItem);
 
-      if(result !== null) {
+      if (result !== null) {
         itemKey = result.item_key;
       } else {
         // Bail if this part wasn't found
@@ -402,10 +446,10 @@ export default class ActionBase {
     const browseResult = await this.roonBrowse(options);
     let result = null;
 
-    if(name && name.length > 0) {
-      if(browseResult && browseResult.action === "list") {
+    if (name && name.length > 0) {
+      if (browseResult && browseResult.action === "list") {
         let offset = 0;
-        while(!result) {
+        while (!result) {
           const loadResult = await this.roonLoad({
             hierarchy: options.hierarchy,
             outputId: options.outputId,
@@ -419,7 +463,7 @@ export default class ActionBase {
 
           // Adjust offset and get next page if needed
           offset = offset + loadResult.items.length;
-          if(offset >= loadResult.list.count) {
+          if (offset >= loadResult.list.count) {
             // No more results
             break;
           }
@@ -435,7 +479,7 @@ export default class ActionBase {
   async roonBrowse(options) {
     return new Promise((resolve, reject) => {
       this.roonCore.services.RoonApiBrowse.browse(options, (err, result) => {
-        if(err) {
+        if (err) {
           reject(new Error(err));
         } else {
           resolve(result);
@@ -447,7 +491,7 @@ export default class ActionBase {
   async roonLoad(options) {
     return new Promise((resolve, reject) => {
       this.roonCore.services.RoonApiBrowse.load(options, (err, result) => {
-        if(err) {
+        if (err) {
           reject(new Error(err));
         } else {
           resolve(result);
@@ -458,9 +502,13 @@ export default class ActionBase {
 
   findRoonListItem(list, title) {
     let result = null;
-    if(list && list.items) {
-      for(const item of list.items) {
-        if(item.title && title && item.title.toLowerCase() === title.toLowerCase()) {
+    if (list && list.items) {
+      for (const item of list.items) {
+        if (
+          item.title &&
+          title &&
+          item.title.toLowerCase() === title.toLowerCase()
+        ) {
           result = item;
           break;
         }
@@ -471,7 +519,7 @@ export default class ActionBase {
   }
 
   getActiveRoonOutputId() {
-    return this.roonActiveOutput && this.roonActiveOutput.outputId || null;
+    return (this.roonActiveOutput && this.roonActiveOutput.outputId) || null;
   }
 
   /**
@@ -480,7 +528,7 @@ export default class ActionBase {
    * @param      {Object}  message  The message
    */
   sendMessage(message) {
-    if(this.streamDeck) {
+    if (this.streamDeck) {
       // log(`action "${this.actionUuid}" sending message`, message);
       this.streamDeck.send(JSON.stringify(message));
     }
