@@ -1,12 +1,25 @@
 # Changelog
 
+## [1.0.9] - 2023-12-15
+### Changed
+- Add support for StreamDeck+ knobs to adjust volume
+- Update to latest SDK styles
+- Add host/port tip
+
+## [1.0.8] - 2022-06-07
+### Changed
+- Update dependencies to latest for performance and security
+- Update internal build configuration to match latest dependencies
+- Remove port number placeholder text since it is now much more dynamic than the previous default
+
 ## [1.0.7] - 2020-08-07
+### Changed
 - Fix issues when waking up from sleep where dynamically rendered images may cause buttons to fail to work.
 
 ## [1.0.6] - 2020-08-04
-- Add ability to show current volume on volume set button
 
 ### Changed
+- Add ability to show current volume on volume set button
 
 ## [1.0.5] - 2020-06-27
 

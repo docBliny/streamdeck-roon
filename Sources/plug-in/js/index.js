@@ -10,7 +10,7 @@ const roonLog = debug("roon");
 const roonSubscribeLog = debug("roon:subscribe");
 const roonUpdateLog = debug("roon:update");
 
-const VERSION_NUMBER = "1.0.7";
+const VERSION_NUMBER = "1.0.9";
 
 // TODO: Adjust log level from config
 // debug.enable("plug-in,roon,roon:subscribe,roon:update,action:*");
@@ -37,6 +37,15 @@ export default class App {
   // ********************************************
   constructor(config) {
     log("config", JSON.stringify(config));
+
+    debug.log = (...args) => {
+      this.sendMessage({
+        event: "logMessage",
+        payload: {
+          message: args.join(" "),
+        },
+      });
+    };
 
     // Bind and save bound event handlers
     this.onStreamDeckOpen = this.onStreamDeckOpen.bind(this);
@@ -196,6 +205,7 @@ export default class App {
     const { action, context, event, payload } = JSON.parse(data);
     const settings = payload ? payload.settings || {} : {};
     log(`Stream Deck message received: ${data}`);
+
     let actionObject;
 
     switch(event) {

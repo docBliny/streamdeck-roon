@@ -1,12 +1,14 @@
 {
   "name": "streamdeck-roon",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "Allows controlling Roon from an Elgato Stream Deck",
   "private": true,
   "scripts": {
-    "build": "npm run build:clean && npm run build:webpack && npm run build:package",
-    "build:clean": "rm -rf net.bliny.roon.sdPlugin && mkdir net.bliny.roon.sdPlugin && rm -f ../Release/net.bliny.roon.streamDeckPlugin",
+    "build": "npm run build:clean && npm run build:webpack && npm run build:parcel:plug-in && npm run build:parcel:property-inspector && npm run build:package",
+    "build:clean": "rm -rf net.bliny.roon.sdPlugin && mkdir net.bliny.roon.sdPlugin && rm -rf ../Release && mkdir -p ../Release",
     "build:webpack": "webpack",
+    "build:parcel:plug-in": "parcel build --no-optimize --no-source-maps --no-cache --no-autoinstall --dist-dir net.bliny.roon.sdPlugin/plug-in/ --public-url './' plug-in/index.html",
+    "build:parcel:property-inspector": "parcel build --no-optimize --no-source-maps --no-cache --dist-dir net.bliny.roon.sdPlugin/property-inspector/ --public-url './' property-inspector/index.html",
     "build:package": "DistributionTool -b -i net.bliny.roon.sdPlugin -o ../Release/",
     "plug-in:build:watch": "DEBUG=plug-in,roon,roon:subscribe,roon:update,action:* parcel watch --no-cache --no-autoinstall --dist-dir net.bliny.roon.sdPlugin/plug-in/ --public-url './' plug-in/index.html",
     "property-inspector:build:watch": "DEBUG=property-inspector* parcel watch --no-cache --dist-dir net.bliny.roon.sdPlugin/property-inspector/ --public-url './' property-inspector/index.html",
@@ -21,25 +23,29 @@
   },
   "license": "MIT",
   "dependencies": {
-    "buffer": "^5.6.0",
-    "debug": "^4.1.1",
-    "node-roon-api": "github:roonlabs/node-roon-api",
+    "buffer": "^6.0.3",
+    "debug": "^4.3.4",
+    "node-roon-api": "github:roonlabs/node-roon-api.git#b09c875738360a9413518a8a51ac70294745a926",
     "node-roon-api-browse": "github:roonlabs/node-roon-api-browse",
     "node-roon-api-image": "github:roonlabs/node-roon-api-image",
     "node-roon-api-transport": "github:roonlabs/node-roon-api-transport"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-env": "^7.18.2",
     "babel-eslint": "^10.1.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "eslint": "^6.8.0",
-    "eslint-watch": "^6.0.1",
-    "html-webpack-plugin": "^4.3.0",
-    "parcel": "2.0.0-nightly.255",
-    "terser-webpack-plugin": "^3.0.1",
-    "webpack": "^5.0.0-beta.16",
-    "webpack-cli": "^4.0.0-beta.8",
-    "webpack-dev-server": "^3.11.0"
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.17.0",
+    "eslint-watch": "^8.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "parcel": "2.8.3",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.73",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.2"
+  },
+    "@parcel/transformer-css": {
+    "errorRecovery": true
   },
   "babel": {
     "presets": [

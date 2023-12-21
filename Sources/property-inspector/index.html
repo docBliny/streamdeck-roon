@@ -28,9 +28,10 @@
         </details>
       </div>
 
-      <details id="roon-core">
+      <details class="pointer" id="roon-core">
         <summary>Roon Core</summary>
         <p>The following Roon Core settings apply to all actions.</p>
+        <p>You can find these values in <i>Roon</i> / <i>Settings</i> / <i>Displays</i></p>
 
         <div class="roon-core-fields">
           <div class="sdpi-item">
@@ -40,7 +41,7 @@
 
           <div class="sdpi-item">
             <div class="sdpi-item-label">Port</div>
-            <input class="sdpi-item-value full" id="roon-port" inputmode="numeric" placeholder="9100" min="1" max="64435" type="number" name="roon-port" required>
+            <input class="sdpi-item-value full" id="roon-port" inputmode="numeric" min="1" max="64435" type="number" name="roon-port" required>
           </div>
 
           <div class="sdpi-item">
@@ -159,6 +160,6 @@
     </div>
     <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
 
-    <script src="js/index.js"></script>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>
