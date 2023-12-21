@@ -1,12 +1,14 @@
 import ActionBase from "./ActionBase";
 import debug from "debug";
+import { MuteOffEncoder } from "../DataImages/mute-off-encoder";
+import { MuteOnEncoder } from "../DataImages/mute-on-encoder";
 
 const ACTION_NAME = "volume-encoder";
 const ACTION_UUID = `net.bliny.roon.${ACTION_NAME}`;
 
 const log = debug(`action:${ACTION_NAME}`);
 
-export default class VolumeSetAction extends ActionBase {
+export default class VolumeEncoderAction extends ActionBase {
   // ********************************************
   // * Constructors
   // ********************************************
@@ -49,8 +51,8 @@ export default class VolumeSetAction extends ActionBase {
   // ********************************************
   // * Private methods, event handlers
   // ********************************************
-  onDialPress(data) {
-    super.onDialPress(data);
+  onDialUp(data) {
+    super.onDialUp(data);
 
     this.toggleMute(data);
   }
@@ -67,8 +69,9 @@ export default class VolumeSetAction extends ActionBase {
     super.onTouchTap(data);
 
     if (data.hold === true) {
-      this.toggleMute(data);
+      this.toggleMuteAll(data);
     } else {
+      this.toggleMute(data);
     }
   }
 
@@ -77,10 +80,46 @@ export default class VolumeSetAction extends ActionBase {
 
     if (activeOutput !== null && activeOutput.volume) {
       this.isMuted = activeOutput.volume.isMuted === true;
-      // this.setImage(undefined);
+      this.setImage(activeOutput.volume.isMuted === true ? MuteOnEncoder : MuteOffEncoder);
     } else {
-      // this.setImage(this.getDisabledImageWhenRequested());
       this.isMuted = false;
+      this.setImage(MuteOffEncoder);
+    }
+
+    if(activeOutput) {
+      const payload = {
+        title: activeOutput.displayName,
+      };
+
+      if(activeOutput.volume) {
+        this.setFeedbackLayout("plug-in/layouts/VolumeLayout.json");
+
+        // Convert the volume value to a string with the correct units
+        payload.value = this.formatVolume(activeOutput.volume);
+
+        // Convert the volume value to a number between 0-100 for the indicator
+        const range = activeOutput.volume.max - activeOutput.volume.min;
+        const value = activeOutput.volume.value - activeOutput.volume.min;
+        const percent = (value / range) * 100;
+
+        payload.indicator = {
+          value: parseInt(percent, 10),
+          enabled: true,
+        };
+        payload.range = {
+          min: activeOutput.volume.min,
+          max: activeOutput.volume.max,
+        };
+        payload.icon = this.isMuted
+          ? "plug-in/images/mute-on-encoder"
+          : "plug-in/images/mute-off-encoder";
+      } else {
+        this.setFeedbackLayout("$A1");
+        payload.value = "N/A";
+        payload.icon = "plug-in/images/volume-disabled-key";
+      }
+
+      this.setFeedback(payload);
     }
   }
 
@@ -125,7 +164,7 @@ export default class VolumeSetAction extends ActionBase {
     }
 
     if (outputId !== null) {
-      const mute = this.toggleDesiredState(data) === 0;
+      const mute = !this.isMuted;
       this.roonTransport.mute(outputId, mute ? "mute" : "unmute", (err) => {
         if (err) {
           log(`"${this.actionUuid}" mute change error: ${err}`);
@@ -150,6 +189,8 @@ export default class VolumeSetAction extends ActionBase {
       if (err) {
         log(`"${this.actionUuid}" mute all change error: ${err}`);
         this.showAlert();
+      } else {
+        this.isAllMuted = mute;
       }
     });
   }

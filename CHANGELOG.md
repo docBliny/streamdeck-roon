@@ -1,9 +1,10 @@
 # Changelog
 
-## [1.0.9] - 2023-03-15
+## [1.0.9] - 2023-12-15
 ### Changed
-- Add support for StreamDeck+ knobs
+- Add support for StreamDeck+ knobs to adjust volume
 - Update to latest SDK styles
+- Add host/port tip
 
 ## [1.0.8] - 2022-06-07
 ### Changed

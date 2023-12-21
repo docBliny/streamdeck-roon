@@ -3,6 +3,7 @@
 
 
 # Features
+## Buttons
 - Play/Pause
   - Cover art
   - Elapsed playback time
@@ -21,6 +22,8 @@
 - Mute/Unmute
 - Roon radio on/off
 
+## Dials (Stream Deck+)
+- Adjust volume
 
 # Installation
 In the Release folder, you can find the file `net.bliny.roon.streamDeckPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.

@@ -4,9 +4,11 @@
   "description": "Allows controlling Roon from an Elgato Stream Deck",
   "private": true,
   "scripts": {
-    "build": "npm run build:clean && npm run build:webpack && npm run build:package",
-    "build:clean": "rm -rf net.bliny.roon.sdPlugin && mkdir net.bliny.roon.sdPlugin && rm -f ../Release/net.bliny.roon.streamDeckPlugin",
+    "build": "npm run build:clean && npm run build:webpack && npm run build:parcel:plug-in && npm run build:parcel:property-inspector && npm run build:package",
+    "build:clean": "rm -rf net.bliny.roon.sdPlugin && mkdir net.bliny.roon.sdPlugin && rm -rf ../Release && mkdir -p ../Release",
     "build:webpack": "webpack",
+    "build:parcel:plug-in": "parcel build --no-optimize --no-source-maps --no-cache --no-autoinstall --dist-dir net.bliny.roon.sdPlugin/plug-in/ --public-url './' plug-in/index.html",
+    "build:parcel:property-inspector": "parcel build --no-optimize --no-source-maps --no-cache --dist-dir net.bliny.roon.sdPlugin/property-inspector/ --public-url './' property-inspector/index.html",
     "build:package": "DistributionTool -b -i net.bliny.roon.sdPlugin -o ../Release/",
     "plug-in:build:watch": "DEBUG=plug-in,roon,roon:subscribe,roon:update,action:* parcel watch --no-cache --no-autoinstall --dist-dir net.bliny.roon.sdPlugin/plug-in/ --public-url './' plug-in/index.html",
     "property-inspector:build:watch": "DEBUG=property-inspector* parcel watch --no-cache --dist-dir net.bliny.roon.sdPlugin/property-inspector/ --public-url './' property-inspector/index.html",

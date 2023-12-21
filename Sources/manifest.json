@@ -253,9 +253,8 @@
       "Icon": "plug-in/images/volume-encoder-action",
       "Controllers": ["Encoder"],
       "Encoder": {
-        "Icon": "plug-in/images/encoder.svg",
-        "layout": "$B1",
-        "StackColor": "#0000FF",
+        "Icon": "plug-in/images/mute-off-encoder",
+        "layout": "plug-in/layouts/VolumeLayout.json",
         "TriggerDescription": {
           "Rotate": "Adjust volume",
           "Push": "Mute/unmute",
@@ -265,7 +264,7 @@
       },
       "States": [
         {
-          "Image": "plug-in/images/volume-encoder-key"
+          "Image": "plug-in/images/mute-off-encoder"
         }
       ],
       "SupportedInMultiActions": false

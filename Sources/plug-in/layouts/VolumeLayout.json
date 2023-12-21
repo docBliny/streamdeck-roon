@@ -1,0 +1,34 @@
+{
+  "id": "volume-layout",
+  "items": [
+    {
+      "key": "title",
+      "type": "text",
+      "rect": [16, 10, 184, 24],
+      "font": { "size": 16, "weight": 600 },
+      "alignment": "center"
+    },
+    {
+      "key": "icon",
+      "type": "pixmap",
+      "rect": [16, 40, 48, 48]
+    },
+    {
+      "key": "value",
+      "type": "text",
+      "rect": [76, 40, 108, 32],
+      "font": { "size": 24, "weight": 600 },
+      "alignment": "right"
+    },
+    {
+      "key": "indicator",
+      "type": "gbar",
+      "rect": [76, 74, 108, 20],
+      "value": 0,
+      "subtype": 4,
+      "bar_h": 12,
+      "border_w": 0,
+      "bar_bg_c": "0:#00ff00,0.75:#ffff00,0.95:#ff0000,1:#ff0000"
+    }
+  ]
+}

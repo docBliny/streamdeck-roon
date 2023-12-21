@@ -138,8 +138,11 @@ export default class ActionBase {
     // Check if this message was intended for this action
     if (action === this.actionUuid && context === this.context) {
       switch (event) {
-        case "dialPress":
-          this.onDialPress(payload);
+        case "dialDown":
+          this.onDialDown(payload);
+          break;
+        case "dialUp":
+          this.onDialUp(payload);
           break;
         case "dialRotate":
           this.onDialRotate(payload);
@@ -160,8 +163,12 @@ export default class ActionBase {
     }
   }
 
-  onDialPress(data) {
-    log(`${this.actionUuid} dialPress`);
+  onDialDown(data) {
+    log(`${this.actionUuid} dialDown`);
+  }
+
+  onDialUp(data) {
+    log(`${this.actionUuid} dialUp`);
   }
 
   onDialRotate(data) {
@@ -532,5 +539,33 @@ export default class ActionBase {
       // log(`action "${this.actionUuid}" sending message`, message);
       this.streamDeck.send(JSON.stringify(message));
     }
+  }
+
+  /**
+   * Sets the SD+ touch display feedback.
+   *
+   * @param {Object} payload The feedback payload
+   */
+  setFeedback(payload) {
+    this.sendMessage({
+      event: "setFeedback",
+      context: this.context,
+      payload,
+    });
+  }
+
+  /**
+   * Sets the SD+ touch display feedback layout.
+   *
+   * @param {Object} layoutId The layout ID to use
+   */
+  setFeedbackLayout(layoutId) {
+    this.sendMessage({
+      event: "setFeedbackLayout",
+      context: this.context,
+      payload: {
+        layout: layoutId,
+      },
+    });
   }
 }

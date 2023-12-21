@@ -38,6 +38,15 @@ export default class App {
   constructor(config) {
     log("config", JSON.stringify(config));
 
+    debug.log = (...args) => {
+      this.sendMessage({
+        event: "logMessage",
+        payload: {
+          message: args.join(" "),
+        },
+      });
+    };
+
     // Bind and save bound event handlers
     this.onStreamDeckOpen = this.onStreamDeckOpen.bind(this);
     this.onStreamDeckClose = this.onStreamDeckClose.bind(this);
@@ -196,6 +205,7 @@ export default class App {
     const { action, context, event, payload } = JSON.parse(data);
     const settings = payload ? payload.settings || {} : {};
     log(`Stream Deck message received: ${data}`);
+
     let actionObject;
 
     switch(event) {
